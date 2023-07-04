@@ -1,28 +1,25 @@
-class MarvelService {
-    _apiBase = 'https://gateway.marvel.com:443/v1/public/';
-    _apiKey = 'apikey=ed607b89306bc6b84c29614554fc42df';
-    _baseOffset = 210;
+import { useHttp } from "../hooks/http.hook";
 
-    getResource = async (url) => {
-        let res = await fetch(url);
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
+const useMarvelService = () => {
+    const { loading, request, error, clearError } = useHttp();
 
-        return await res.json();
-    }
+    const _apiBase = "https://gateway.marvel.com:443/v1/public/";
+    const _apiKey = "apikey=ed607b89306bc6b84c29614554fc42df";
+    const _baseOffset = 210;
 
-    getAllCharacters = async (offset = this._baseOffset) => {
-        const res = await this.getResource(`${this._apiBase}characters?limit=9&offset=${offset}&${this._apiKey}`);
-        return res.data.results.map(this._transformCharacter);
-    }
+    const getAllCharacters = async (offset = _baseOffset) => {
+        const res = await request(
+            `${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`
+        );
+        return res.data.results.map(_transformCharacter);
+    };
 
-    getCharacter = async (id) => {
-        const res = await this.getResource(`${this._apiBase}characters/${id}?${this._apiKey}`);
-        return this._transformCharacter(res.data.results[0]);
-    }
+    const getCharacter = async (id) => {
+        const res = await request(`${_apiBase}characters/${id}?${_apiKey}`);
+        return _transformCharacter(res.data.results[0]);
+    };
 
-    _transformCharacter = (char) => {
+    const _transformCharacter = (char) => {
         return {
             id: char.id,
             name: char.name,
@@ -31,8 +28,10 @@ class MarvelService {
             homepage: char.urls[0].url,
             wiki: char.urls[1].url,
             comics: char.comics.items,
-        }
-    }
-}
+        };
+    };
 
-export default MarvelService;
+    return { loading, error, getAllCharacters, getCharacter, clearError };
+};
+
+export default useMarvelService;
