@@ -58,7 +58,7 @@ const CharList = (props) => {
 
             return (
                 <li
-                    key={item.id}
+                    key={i}
                     className="char__item"
                     tabIndex={0}
                     ref={(el) => (itemRefs.current[i] = el)}
