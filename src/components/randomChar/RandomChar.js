@@ -4,8 +4,6 @@ import mjolnir from "../../resources/img/mjolnir.png";
 
 import useMarvelService from "../../services/MarvelService";
 import setContent from "../../utils/setContent";
-import Spinner from "../spinner/Spinner";
-import ErrorMessage from "../errorMessage/ErrorMessage";
 
 const RandomChar = () => {
     const [char, setChar] = useState(null);
@@ -19,6 +17,7 @@ const RandomChar = () => {
         return () => {
             clearInterval(timerId);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onCharLoaded = (char) => {

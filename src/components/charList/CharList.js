@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 import useMarvelService from "../../services/MarvelService";
-// import setContent from "../../utils/setContent";
 
 import "./charList.scss";
 
@@ -33,6 +32,7 @@ const CharList = (props) => {
 
     useEffect(() => {
         onRequest(offset, true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onRequest = (offset, initial) => {
@@ -106,6 +106,7 @@ const CharList = (props) => {
 
     const elements = useMemo(() => {
         return setContent(process, () => renderItems(charList), newItemLoading);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [process]);
 
     return (

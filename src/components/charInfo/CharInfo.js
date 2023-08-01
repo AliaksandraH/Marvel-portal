@@ -13,7 +13,11 @@ const CharInfo = (props) => {
         useMarvelService();
 
     useEffect(() => {
-        updateChar();
+        if (props.charId !== null) {
+            updateChar();
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.charId]);
 
     const updateChar = () => {
@@ -79,9 +83,9 @@ const View = ({ data }) => {
                                 {item.name}
                             </li>
                         );
-                    } else {
-                        return;
                     }
+                    // eslint-disable-next-line array-callback-return
+                    return;
                 })}
             </ul>
         </>
