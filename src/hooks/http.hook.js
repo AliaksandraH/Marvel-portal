@@ -37,5 +37,5 @@ export const useHttp = () => {
         setProcess("loading");
     }, []);
 
-    return { request, clearError, process, setProcess };
+    return { request, process, setProcess, clearError };
 };
