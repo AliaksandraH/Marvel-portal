@@ -14,6 +14,8 @@ const MainPage = () => {
         setChar(id);
     };
 
+    const style = { position: "sticky", top: 15 };
+
     return (
         <>
             <Helmet>
@@ -27,7 +29,7 @@ const MainPage = () => {
                 <ErrorBoundary>
                     <CharList onCharSelected={onCharSelected} />
                 </ErrorBoundary>
-                <div style={{ position: "sticky", top: 15 }}>
+                <div style={style}>
                     <ErrorBoundary>
                         <CharSearchForm />
                     </ErrorBoundary>

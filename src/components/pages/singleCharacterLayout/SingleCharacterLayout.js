@@ -13,7 +13,7 @@ const SingleCharacterLayout = ({ data }) => {
     }
 
     return (
-        <div className="single-comic">
+        <div className="single-character">
             <Helmet>
                 <meta name="description" content={`Comic character ${name}`} />
                 <title>{name}</title>
@@ -21,12 +21,12 @@ const SingleCharacterLayout = ({ data }) => {
             <img
                 src={thumbnail}
                 alt={name}
-                className="single-comic__char-img"
+                className="single-character__char-img"
             />
-            <div className="single-comic__info">
-                <h2 className="single-comic__name">{name}</h2>
+            <div className="single-character__info">
+                <h2 className="single-character__name">{name}</h2>
                 <div className="char__comics">Description:</div>
-                <p className="single-comic__descr">
+                <p className="single-character__descr">
                     {description.length !== 0
                         ? description
                         : "There is no description for this character."}
@@ -43,7 +43,7 @@ const SingleCharacterLayout = ({ data }) => {
                     })}
                 </ul>
             </div>
-            <Link to="/" className="single-comic__back">
+            <Link to="/" className="single-character__back">
                 Back to all
             </Link>
         </div>

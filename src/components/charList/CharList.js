@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import PropTypes from "prop-types";
 
+import useMarvelService from "../../services/MarvelService";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
-import useMarvelService from "../../services/MarvelService";
 
 import "./charList.scss";
 
@@ -28,11 +28,11 @@ const CharList = (props) => {
     const [offset, setOffset] = useState(210);
     const [charEnded, setCharEnded] = useState(false);
 
-    const { process, setProcess, getAllCharacters } = useMarvelService();
+    const { getAllCharacters, process, setProcess } = useMarvelService();
 
     useEffect(() => {
         onRequest(offset, true);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line
     }, []);
 
     const onRequest = (offset, initial) => {
@@ -42,15 +42,14 @@ const CharList = (props) => {
             .then(() => setProcess("confirment"));
     };
 
-    const onCharListLoaded = (newCharList) => {
+    const onCharListLoaded = async (newCharList) => {
         let ended = false;
         if (newCharList.length < 9) {
             ended = true;
         }
-
-        setCharList((charList) => [...charList, ...newCharList]);
+        setCharList([...charList, ...newCharList]);
         setNewItemLoading(false);
-        setOffset((offset) => offset + 9);
+        setOffset(offset + 9);
         setCharEnded(ended);
     };
 
@@ -64,7 +63,7 @@ const CharList = (props) => {
         itemRefs.current[id].focus();
     };
 
-    function renderItems(arr) {
+    const renderItems = (arr) => {
         const items = arr.map((item, i) => {
             let imgStyle = { objectFit: "cover" };
             if (
@@ -76,13 +75,13 @@ const CharList = (props) => {
 
             return (
                 <li
-                    key={i}
+                    key={item.id}
                     className="char__item"
                     tabIndex={0}
                     ref={(el) => (itemRefs.current[i] = el)}
                     onClick={() => {
-                        focusOnItem(i);
                         props.onCharSelected(item.id);
+                        focusOnItem(i);
                     }}
                     onKeyPress={(e) => {
                         if (e.key === " " || e.key === "Enter") {
@@ -102,11 +101,11 @@ const CharList = (props) => {
         });
 
         return <ul className="char__grid">{items}</ul>;
-    }
+    };
 
     const elements = useMemo(() => {
         return setContent(process, () => renderItems(charList), newItemLoading);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line
     }, [process]);
 
     return (
