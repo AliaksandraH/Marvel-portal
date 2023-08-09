@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import "./randomChar.scss";
+import { Link } from "react-router-dom";
 import mjolnir from "../../resources/img/mjolnir.png";
 
 import useMarvelService from "../../services/MarvelService";
 import setContent from "../../utils/setContent";
+
+import "./randomChar.scss";
 
 const RandomChar = () => {
     const [char, setChar] = useState(null);
@@ -56,10 +58,10 @@ const RandomChar = () => {
 };
 
 const View = ({ data }) => {
-    const { name, description, thumbnail, homepage, wiki } = data;
+    const { id, name, description, thumbnail } = data;
     const desc = !description
-        ? "There is no description for this character"
-        : description.slice(0, 170) + "...";
+        ? "There is no description for this character."
+        : description.slice(0, 100) + "...";
     let classForImg = { objectFit: "cover" };
     if (
         thumbnail ===
@@ -80,12 +82,12 @@ const View = ({ data }) => {
                 <p className="randomchar__name">{name}</p>
                 <p className="randomchar__descr">{desc}</p>
                 <div className="randomchar__btns">
-                    <a href={homepage} className="button button__main">
-                        <div className="inner">Homepage</div>
-                    </a>
-                    <a href={wiki} className="button button__secondary">
-                        <div className="inner">Wiki</div>
-                    </a>
+                    <Link
+                        to={`/characters/${id}`}
+                        className="button button__main"
+                    >
+                        <div className="inner">homepage</div>
+                    </Link>
                 </div>
             </div>
         </div>

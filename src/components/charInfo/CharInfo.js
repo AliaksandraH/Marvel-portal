@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import useMarvelService from "../../services/MarvelService";
 import setContent from "../../utils/setContent";
@@ -38,10 +39,10 @@ const CharInfo = (props) => {
 };
 
 const View = ({ data }) => {
-    const { name, description, thumbnail, homepage, wiki, comics } = data;
+    const { id, name, description, thumbnail, comics } = data;
     let notComics = "";
     if (comics.length === 0) {
-        notComics = "This persanage does not have a list of comics";
+        notComics = "This persanage does not have a list of comics.";
     }
 
     let classForImg = { objectFit: "cover" };
@@ -59,19 +60,19 @@ const View = ({ data }) => {
                 <div>
                     <div className="char__info-name">{name}</div>
                     <div className="char__btns">
-                        <a href={homepage} className="button button__main">
+                        <Link
+                            to={`/characters/${id}`}
+                            className="button button__main"
+                        >
                             <div className="inner">homepage</div>
-                        </a>
-                        <a href={wiki} className="button button__secondary">
-                            <div className="inner">Wiki</div>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
             <div className="char__descr">
                 {description.length !== 0
                     ? description
-                    : "There is no description for this character"}
+                    : "There is no description for this character."}
             </div>
             <div className="char__comics">Comics:</div>
             <ul className="char__comics-list">

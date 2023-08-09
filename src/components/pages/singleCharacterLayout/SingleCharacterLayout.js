@@ -18,7 +18,11 @@ const SingleCharacterLayout = ({ data }) => {
             />
             <div className="single-comic__info">
                 <h2 className="single-comic__name">{name}</h2>
-                <p className="single-comic__descr">{description}</p>
+                <p className="single-comic__descr">
+                    {description.length !== 0
+                        ? description
+                        : "There is no description for this character."}
+                </p>
             </div>
         </div>
     );
