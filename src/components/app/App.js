@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
-// import { MainPage, ComicsPage, SingleComicPage } from "../pages";
 import Spinner from "../spinner/Spinner";
 import AppHeader from "../appHeader/AppHeader";
 
