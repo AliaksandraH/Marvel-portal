@@ -1,6 +1,6 @@
-# Marvel-portal
+# Marvel-Portal
 
-Welcome to the Marvel Portal, where you can meet Marvel characters and incredible adventures. Here you will find information about a wide variety of characters and the fascinating stories they go through.
+Welcome to the Marvel-Portal, where you can meet Marvel characters and incredible adventures. Here you will find information about a wide variety of characters and the fascinating stories they go through.
 
 Marvel-Portal presents unique characters, each of which has its own name and photo. You can see what they look like, find out their names and all the comics they participated in. 
 
