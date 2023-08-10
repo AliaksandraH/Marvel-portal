@@ -1,0 +1,8 @@
+@import "../../style/variables.scss";
+
+.main {
+    &__panel {
+        position: sticky;
+        top: 15px;
+    }
+}

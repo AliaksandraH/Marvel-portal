@@ -7,14 +7,14 @@ import CharInfo from "../charInfo/CharInfo";
 import CharSearchForm from "../charSearchForm/CharSearchForm";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 
+import "./mainPage.scss";
+
 const MainPage = () => {
     const [selectedChar, setChar] = useState(0);
 
     const onCharSelected = (id) => {
         setChar(id);
     };
-
-    const style = { position: "sticky", top: 15 };
 
     return (
         <>
@@ -29,7 +29,7 @@ const MainPage = () => {
                 <ErrorBoundary>
                     <CharList onCharSelected={onCharSelected} />
                 </ErrorBoundary>
-                <div style={style}>
+                <div className="main__panel">
                     <ErrorBoundary>
                         <CharSearchForm />
                     </ErrorBoundary>
