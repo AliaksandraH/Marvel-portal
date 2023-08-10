@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import useMarvelService from "../../services/MarvelService";
 import setContent from "../../utils/setContent";
@@ -17,7 +17,6 @@ const CharInfo = (props) => {
         if (props.charId !== null) {
             updateChar();
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.charId]);
 
@@ -42,7 +41,11 @@ const View = ({ data }) => {
     const { id, name, thumbnail, comics } = data;
     let notComics = "";
     if (comics.length === 0) {
-        notComics = "This persanage does not have a list of comics.";
+        notComics = (
+            <p className="char__comics-none">
+                This persanage does not have a list of comics.
+            </p>
+        );
     }
 
     let classForImg = { objectFit: "cover" };

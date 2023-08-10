@@ -51,7 +51,7 @@ const CharSearchForm = () => {
         </div>
     ) : (
         <div className="char__search-error">
-            The character was not found. Check the name and try again
+            The character was not found. Check the name and try again.
         </div>
     );
 
@@ -62,7 +62,7 @@ const CharSearchForm = () => {
                     charName: "",
                 }}
                 validationSchema={Yup.object({
-                    charName: Yup.string().required("This field is required"),
+                    charName: Yup.string().required("This field is required."),
                 })}
                 onSubmit={({ charName }) => {
                     updateChar(charName);

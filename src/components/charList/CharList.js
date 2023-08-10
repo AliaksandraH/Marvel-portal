@@ -55,14 +55,6 @@ const CharList = (props) => {
 
     const itemRefs = useRef([]);
 
-    const focusOnItem = (id) => {
-        itemRefs.current.forEach((item) =>
-            item.classList.remove("char__item_selected")
-        );
-        itemRefs.current[id].classList.add("char__item_selected");
-        itemRefs.current[id].focus();
-    };
-
     const renderItems = (arr) => {
         const items = arr.map((item, i) => {
             let imgStyle = { objectFit: "cover" };
@@ -81,12 +73,10 @@ const CharList = (props) => {
                     ref={(el) => (itemRefs.current[i] = el)}
                     onClick={() => {
                         props.onCharSelected(item.id);
-                        focusOnItem(i);
                     }}
                     onKeyPress={(e) => {
                         if (e.key === " " || e.key === "Enter") {
                             props.onCharSelected(item.id);
-                            focusOnItem(i);
                         }
                     }}
                 >

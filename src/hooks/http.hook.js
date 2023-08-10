@@ -22,8 +22,6 @@ export const useHttp = () => {
                 }
 
                 const data = await response.json();
-
-                // setProcess("confirment");
                 return data;
             } catch (e) {
                 setProcess("error");
